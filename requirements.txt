@@ -1,5 +1,12 @@
-streamlit
-pandas
-scikit-learn
-joblib
-numpy
+# Core libraries
+pandas==2.2.3
+numpy==2.2.4
+scikit-learn==1.6.1
+joblib==1.5.0
+scipy==1.15.2
+
+# Web app
+streamlit==1.50.0
+
+# SQLite (for local + cloud DB ops)
+sqlite3-binary

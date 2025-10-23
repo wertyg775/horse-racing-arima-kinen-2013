@@ -16,6 +16,9 @@ if not os.path.exists(MODEL_PATH):
     st.error(f"❌ Model file not found at: {MODEL_PATH}")
 else:
     model = joblib.load(MODEL_PATH)
+    
+print(type(model))
+
 
 # --- Features ---
 FEATURES_PATH = os.path.join(BASE_DIR, "data", "processed", "arima_kinen_features.csv")
