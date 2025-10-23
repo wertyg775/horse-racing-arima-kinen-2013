@@ -8,12 +8,19 @@ import os
 # ===========================================================
 # 🧠 Load model + features
 # ===========================================================
-MODEL_PATH = "models/arima_model.pkl"
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # one level above /src
+MODEL_PATH = os.path.join(BASE_DIR, "models", "arima_model.pkl")
+
+
 FEATURES_PATH = "data/processed/arima_kinen_features.csv"
 DB_PATH = "data/races.db"
 
 
-model = joblib.load(MODEL_PATH)
+if not os.path.exists(MODEL_PATH):
+    st.error(f"Model file not found at: {MODEL_PATH}")
+else:
+    model = joblib.load(MODEL_PATH)
+
 features = pd.read_csv(FEATURES_PATH)
 
 
