@@ -8,12 +8,21 @@ import os
 # ===========================================================
 # 🧠 Load model + features
 # ===========================================================
-MODEL_PATH = r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\models\arima_model.pkl"
-FEATURES_PATH = r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\data\processed\arima_kinen_features.csv"
-DB_PATH = r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\data\races.db"
+MODEL_PATH = "models/arima_model.pkl"
+FEATURES_PATH = "data/processed/arima_kinen_features.csv"
+DB_PATH = "data/races.db"
+
 
 model = joblib.load(MODEL_PATH)
 features = pd.read_csv(FEATURES_PATH)
+
+
+
+def get_asset_path(filename):
+    """Safely get the absolute path for assets within the /src/assets folder."""
+    base_dir = os.path.dirname(__file__)
+    return os.path.join(base_dir, "assets", filename)
+
 
 feature_cols = [
     'Speed_kph', 'PosChange', 'FinalCornerPos', 'Runners',
@@ -24,7 +33,7 @@ feature_cols = [
 # ===========================================================
 # 🏇 Page Title
 # ===========================================================
-st.image("assets/banner.jpg", use_container_width=True)
+st.image(get_asset_path("banner.jpg"), use_container_width=True)
 st.title("🏆 Arima Kinen 2013 — Prediction Dashboard")
 st.markdown("""
 Welcome to the **Arima Kinen 2013 Race Predictor**!  
@@ -67,23 +76,24 @@ leaderboard["Win_Prob_%"] = (leaderboard["Win_Prob_Normalized"] * 100).round(2)
 st.subheader("🏇 Predicted Win Probabilities")
 
 horse_images = {
-    "Orfevre": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Orfevre.jpg",
-    "Gold Ship": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Gold_Ship.jpg",
-    "Win Variation": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Win_Variation.jpg",
-    "Love Is Boo Shet": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Love_Is_Boo_Shet.jpg",
-    "Tamamo Best Play": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Tamamo_Best_Play.jpg",
-    "Curren Mirotic": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Curren_Mirotic.jpg",
-    "Desperado": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Desperado.jpg",
-    "To The Glory": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\To_The_Glory.jpg",
-    "T M Inazuma": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\TM_Inazuma.jpg",
-    "Verde Green": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Verde_Green.jpg",
-    "Admire Rakti": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Admire_Rakti.jpg",
-    "Lovely Day": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Lovely_Day.jpg",
-    "Nakayama Knight": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Nakayama_Knight.jpg",
-    "Tosen Jordan": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Tosen_Jordan.jpg",
-    "Danon Ballade": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Danon_Ballade.jpg",
-    "Lelouch": r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\src\assets\Lelouch.jpg",
+    "Orfevre": get_asset_path("Orfevre.jpg"),
+    "Gold Ship": get_asset_path("Gold_Ship.jpg"),
+    "Win Variation": get_asset_path("Win_Variation.jpg"),
+    "Love Is Boo Shet": get_asset_path("Love_Is_Boo_Shet.jpg"),
+    "Tamamo Best Play": get_asset_path("Tamamo_Best_Play.jpg"),
+    "Curren Mirotic": get_asset_path("Curren_Mirotic.jpg"),
+    "Desperado": get_asset_path("Desperado.jpg"),
+    "To The Glory": get_asset_path("To_The_Glory.jpg"),
+    "T M Inazuma": get_asset_path("TM_Inazuma.jpg"),
+    "Verde Green": get_asset_path("Verde_Green.jpg"),
+    "Admire Rakti": get_asset_path("Admire_Rakti.jpg"),
+    "Lovely Day": get_asset_path("Lovely_Day.jpg"),
+    "Nakayama Knight": get_asset_path("Nakayama_Knight.jpg"),
+    "Tosen Jordan": get_asset_path("Tosen_Jordan.jpg"),
+    "Danon Ballade": get_asset_path("Danon_Ballade.jpg"),
+    "Lelouch": get_asset_path("Lelouch.jpg"),
 }
+
 
 # ===========================================================
 # 🏁 Display Leaderboard (Static)

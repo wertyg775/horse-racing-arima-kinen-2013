@@ -3,8 +3,8 @@ import sqlite3
 import os
 
 # Paths
-data_path = r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\data\processed\cleaned.xlsx"
-db_path = r"C:\Users\User\Documents\horse-racing-arima-kinen-2013\data\races.db"
+data_path = "data/processed/cleaned.xlsx"
+db_path = "data/races.db"
 
 # Create DB folder if not exists
 os.makedirs(os.path.dirname(db_path), exist_ok=True)
