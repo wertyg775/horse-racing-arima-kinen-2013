@@ -6,23 +6,29 @@ import os
 
 
 # ===========================================================
-# 🧠 Load model + features
+# 🧠 Load model + features safely
 # ===========================================================
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # one level above /src
+
+# --- Model ---
 MODEL_PATH = os.path.join(BASE_DIR, "models", "arima_model.pkl")
-
-
-FEATURES_PATH = "data/processed/arima_kinen_features.csv"
-DB_PATH = "data/races.db"
-
-
 if not os.path.exists(MODEL_PATH):
-    st.error(f"Model file not found at: {MODEL_PATH}")
+    st.error(f"❌ Model file not found at: {MODEL_PATH}")
 else:
     model = joblib.load(MODEL_PATH)
 
-features = pd.read_csv(FEATURES_PATH)
+# --- Features ---
+FEATURES_PATH = os.path.join(BASE_DIR, "data", "processed", "arima_kinen_features.csv")
+if not os.path.exists(FEATURES_PATH):
+    st.error(f"❌ Feature file not found at: {FEATURES_PATH}")
+    st.stop()
+else:
+    features = pd.read_csv(FEATURES_PATH)
 
+# --- Database ---
+DB_PATH = os.path.join(BASE_DIR, "data", "races.db")
+if not os.path.exists(DB_PATH):
+    st.warning(f"⚠️ Race history database not found at: {DB_PATH}")
 
 
 def get_asset_path(filename):
