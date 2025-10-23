@@ -3,6 +3,7 @@ import pandas as pd
 import joblib
 import sqlite3
 import os
+import cloudpickle
 
 
 # ===========================================================
@@ -12,12 +13,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # one level above /src
 
 # --- Model ---
 MODEL_PATH = os.path.join(BASE_DIR, "models", "arima_model.pkl")
-if not os.path.exists(MODEL_PATH):
-    st.error(f"❌ Model file not found at: {MODEL_PATH}")
-else:
-    model = joblib.load(MODEL_PATH)
-    
-print(type(model))
+with open(MODEL_PATH, "rb") as f:
+    model = cloudpickle.load(f)
+
 
 
 # --- Features ---
