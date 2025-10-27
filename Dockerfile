@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # 4️⃣ Copy only requirements first (for caching)
-COPY requirements_backup.txt /app/requirements.txt
+COPY requirements.txt /app/requirements.txt
 
 # 5️⃣ Install system dependencies + Python dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
