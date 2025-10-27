@@ -12,7 +12,7 @@ The probabilities from the classifier are then **aggregated across horses** in t
 ### 1. Data Collection
 - Historical race data was scraped from **Netkeiba**, containing:
   - Race details (date, distance, surface, weather, etc.)
-  - Horse information (age, sex, race history, popularity)
+  - Horse information (weight, race history, popularity)
   - Jockey and trainer details
   - Finishing position and odds  
 
