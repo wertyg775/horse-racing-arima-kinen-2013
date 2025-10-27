@@ -1,5 +1,5 @@
 # 1️⃣ Base image: use Python 3.13
-FROM python:3.13-slim
+FROM python:3.11-slim
 
 # 2️⃣ Environment variables for clean output
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -17,6 +17,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip && pip install -r /app/requirements.txt
+
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
 
 # 6️⃣ Copy the rest of your code
 COPY . /app
